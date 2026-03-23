@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-Month Review Feedback</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #f7f2ea;
+  --paper2: #f0ebe0;
+  --ink: #2e2518;
+  --moss: #6a7c5b;
+  --fern: #8fa07a;
+  --sage: #b5c4a5;
+  --clay: #b8724e;
+  --sand: #d4a97a;
+  --blush: #d4907a;
+  --bark: #7a5c3e;
+  --mist: #c8d4be;
+}
+
+body {
+  background: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(143,160,122,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(184,114,78,0.08) 0%, transparent 50%);
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px 70px;
+}
+
+.page {
+  width: 100%;
+  max-width: 760px;
+  position: relative;
+}
+
+/* BOTANICAL DECORATIONS */
+.leaf-deco {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.18;
+}
+.leaf-deco.tl { top: -10px; left: -30px; transform: rotate(-25deg); }
+.leaf-deco.tr { top: 30px; right: -20px; transform: rotate(40deg) scaleX(-1); }
+.leaf-deco.br { bottom: 60px; right: -25px; transform: rotate(-20deg) scaleX(-1); }
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.sprig {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  font-family: 'Nunito', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 16px;
+}
+
+.main-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(34px, 5.5vw, 50px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.main-title em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--bark);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  opacity: 0.8;
+}
+
+.wavy-divider {
+  margin: 20px auto 0;
+  display: block;
+  width: 180px;
+  opacity: 0.35;
+}
+
+/* SECTION LABELS */
+.section-label {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--bark);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.85;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  opacity: 0.5;
+}
+.section-label::before { background: linear-gradient(to right, transparent, var(--fern)); }
+.section-label::after  { background: linear-gradient(to left,  transparent, var(--fern)); }
+
+/* TIER 1 */
+.tier-top { margin-bottom: 46px; }
+
+.top-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tag-top {
+  background: var(--moss);
+  color: #f7f4ee;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 10px 22px;
+  position: relative;
+  animation: bloomIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  box-shadow: 0 2px 8px rgba(106,124,91,0.2);
+}
+.tag-top:nth-child(1) { border-radius: 50px 30px 50px 30px; animation-delay: 0.05s; }
+.tag-top:nth-child(2) { border-radius: 30px 50px 30px 50px; animation-delay: 0.12s; }
+.tag-top:nth-child(3) { border-radius: 50px 35px 45px 40px; animation-delay: 0.19s; }
+.tag-top:nth-child(4) { border-radius: 35px 50px 40px 45px; animation-delay: 0.26s; }
+.tag-top:nth-child(5) { border-radius: 45px 40px 50px 35px; animation-delay: 0.33s; }
+.tag-top:nth-child(6) { border-radius: 40px 45px 35px 50px; animation-delay: 0.40s; }
+
+/* TIER 2 */
+.tier-mid { margin-bottom: 46px; }
+
+.mid-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  justify-content: center;
+}
+
+.tag-mid {
+  background: transparent;
+  color: var(--bark);
+  border: 1.5px solid var(--fern);
+  font-size: 12.5px;
+  font-weight: 400;
+  padding: 8px 18px;
+  animation: bloomIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.tag-mid:nth-child(1)  { border-radius: 50px 28px 50px 28px; animation-delay: 0.08s; }
+.tag-mid:nth-child(2)  { border-radius: 28px 50px 28px 50px; animation-delay: 0.14s; }
+.tag-mid:nth-child(3)  { border-radius: 50px 32px 46px 36px; animation-delay: 0.20s; }
+.tag-mid:nth-child(4)  { border-radius: 36px 46px 32px 50px; animation-delay: 0.26s; }
+.tag-mid:nth-child(5)  { border-radius: 46px 36px 50px 32px; animation-delay: 0.32s; }
+.tag-mid:nth-child(6)  { border-radius: 32px 50px 36px 46px; animation-delay: 0.38s; }
+.tag-mid:nth-child(7)  { border-radius: 50px 30px 44px 38px; animation-delay: 0.44s; }
+.tag-mid:nth-child(8)  { border-radius: 38px 44px 30px 50px; animation-delay: 0.50s; }
+.tag-mid:nth-child(9)  { border-radius: 44px 38px 50px 30px; animation-delay: 0.56s; }
+.tag-mid:nth-child(10) { border-radius: 30px 50px 38px 44px; animation-delay: 0.62s; }
+
+/* TIER 3 STRENGTHS */
+.tier-strengths { margin-bottom: 46px; }
+
+.strengths-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 28px;
+}
+
+.strengths-wrap::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--fern), var(--sand), var(--blush));
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.strength-item {
+  position: relative;
+  padding: 9px 0 9px 18px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.5;
+  border-bottom: 1px dashed rgba(143,160,122,0.35);
+  animation: slideRight 0.5s ease both;
+}
+.strength-item:last-child { border-bottom: none; }
+
+.strength-item::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--fern);
+  opacity: 0.75;
+}
+
+.strength-item:nth-child(1) { animation-delay: 0.05s; }
+.strength-item:nth-child(2) { animation-delay: 0.10s; }
+.strength-item:nth-child(3) { animation-delay: 0.15s; }
+.strength-item:nth-child(4) { animation-delay: 0.20s; }
+.strength-item:nth-child(5) { animation-delay: 0.25s; }
+.strength-item:nth-child(6) { animation-delay: 0.30s; }
+.strength-item:nth-child(7) { animation-delay: 0.35s; }
+.strength-item:nth-child(8) { animation-delay: 0.40s; }
+
+.strength-item:nth-child(1)::before { background: var(--clay); }
+.strength-item:nth-child(2)::before { background: var(--blush); }
+.strength-item:nth-child(3)::before { background: var(--fern); }
+.strength-item:nth-child(4)::before { background: var(--sand); }
+.strength-item:nth-child(5)::before { background: var(--moss); }
+.strength-item:nth-child(6)::before { background: var(--clay); }
+.strength-item:nth-child(7)::before { background: var(--blush); }
+.strength-item:nth-child(8)::before { background: var(--fern); }
+
+/* QUOTES */
+.tier-quotes { margin-bottom: 10px; }
+
+.quotes-scatter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 500px) {
+  .quotes-scatter { grid-template-columns: 1fr; }
+  .strengths-wrap { padding-left: 22px; }
+}
+
+.quote-card {
+  background: var(--paper2);
+  padding: 18px 18px 16px 20px;
+  position: relative;
+  animation: bloomIn 0.55s cubic-bezier(0.34,1.4,0.64,1) both;
+  box-shadow: 2px 3px 12px rgba(122,92,62,0.08);
+}
+.quote-card:nth-child(1)  { border-radius: 4px 20px 16px 20px; animation-delay: 0.05s; }
+.quote-card:nth-child(2)  { border-radius: 20px 4px 20px 16px; animation-delay: 0.12s; }
+.quote-card:nth-child(3)  { border-radius: 16px 20px 4px 20px; animation-delay: 0.19s; }
+.quote-card:nth-child(4)  { border-radius: 20px 16px 20px 4px; animation-delay: 0.26s; }
+.quote-card:nth-child(5)  { border-radius: 4px 18px 18px 18px; animation-delay: 0.33s; }
+.quote-card:nth-child(6)  { border-radius: 18px 4px 18px 18px; animation-delay: 0.40s; }
+.quote-card:nth-child(7)  { border-radius: 18px 18px 4px 18px; animation-delay: 0.47s; }
+.quote-card:nth-child(8)  { border-radius: 18px 18px 18px 4px; animation-delay: 0.54s; }
+.quote-card:nth-child(9)  { border-radius: 4px 22px 14px 22px; animation-delay: 0.61s; }
+.quote-card:nth-child(10) { border-radius: 22px 4px 22px 14px; animation-delay: 0.68s; }
+
+.quote-leaf {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.quote-text {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 52px;
+  padding-top: 28px;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--fern) 30%, var(--sand) 70%, transparent);
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0.4;
+}
+
+.footer-line {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--bark);
+  margin-bottom: 8px;
+}
+
+.footer-sub {
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moss);
+  opacity: 0.7;
+}
+
+@keyframes bloomIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Botanical corner leaves -->
+  <svg class="leaf-deco tl" width="90" height="130" viewBox="0 0 90 130" fill="none">
+    <path d="M45 125 C45 125 5 90 8 50 C11 15 45 5 45 5 C45 5 79 15 82 50 C85 90 45 125 45 125Z" fill="#6a7c5b"/>
+    <line x1="45" y1="10" x2="45" y2="120" stroke="#2e2518" stroke-width="1.2" opacity="0.4"/>
+    <line x1="45" y1="40" x2="28" y2="28" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="60" x2="22" y2="52" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="80" x2="26" y2="75" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="40" x2="62" y2="28" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="60" x2="68" y2="52" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="80" x2="64" y2="75" stroke="#2e2518" stroke-width="0.8" opacity="0.3"/>
+  </svg>
+
+  <svg class="leaf-deco tr" width="70" height="110" viewBox="0 0 70 110" fill="none">
+    <path d="M35 105 C35 105 5 75 7 42 C9 12 35 4 35 4 C35 4 61 12 63 42 C65 75 35 105 35 105Z" fill="#b8724e"/>
+    <line x1="35" y1="8" x2="35" y2="98" stroke="#2e2518" stroke-width="1" opacity="0.3"/>
+    <line x1="35" y1="35" x2="20" y2="26" stroke="#2e2518" stroke-width="0.7" opacity="0.25"/>
+    <line x1="35" y1="55" x2="16" y2="48" stroke="#2e2518" stroke-width="0.7" opacity="0.25"/>
+    <line x1="35" y1="35" x2="50" y2="26" stroke="#2e2518" stroke-width="0.7" opacity="0.25"/>
+    <line x1="35" y1="55" x2="54" y2="48" stroke="#2e2518" stroke-width="0.7" opacity="0.25"/>
+  </svg>
+
+  <svg class="leaf-deco br" width="55" height="90" viewBox="0 0 55 90" fill="none">
+    <path d="M27 86 C27 86 3 62 5 34 C7 10 27 3 27 3 C27 3 47 10 50 34 C52 62 27 86 27 86Z" fill="#8fa07a"/>
+    <line x1="27" y1="6" x2="27" y2="80" stroke="#2e2518" stroke-width="0.9" opacity="0.3"/>
+    <line x1="27" y1="30" x2="14" y2="22" stroke="#2e2518" stroke-width="0.6" opacity="0.25"/>
+    <line x1="27" y1="48" x2="12" y2="42" stroke="#2e2518" stroke-width="0.6" opacity="0.25"/>
+    <line x1="27" y1="30" x2="40" y2="22" stroke="#2e2518" stroke-width="0.6" opacity="0.25"/>
+    <line x1="27" y1="48" x2="42" y2="42" stroke="#2e2518" stroke-width="0.6" opacity="0.25"/>
+  </svg>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="sprig">
+      <svg width="130" height="40" viewBox="0 0 130 40" fill="none">
+        <line x1="65" y1="36" x2="65" y2="4" stroke="#6a7c5b" stroke-width="1.2"/>
+        <path d="M65 20 C57 11 44 13 42 22 C54 26 65 20 65 20Z" fill="#8fa07a" opacity="0.75"/>
+        <path d="M65 20 C73 11 86 13 88 22 C76 26 65 20 65 20Z" fill="#8fa07a" opacity="0.75"/>
+        <path d="M65 11 C60 4 50 6 48 13 C56 16 65 11 65 11Z" fill="#6a7c5b" opacity="0.65"/>
+        <path d="M65 11 C70 4 80 6 82 13 C74 16 65 11 65 11Z" fill="#6a7c5b" opacity="0.65"/>
+        <path d="M65 29 C60 22 51 24 49 30 C56 33 65 29 65 29Z" fill="#b5c4a5" opacity="0.65"/>
+        <path d="M65 29 C70 22 79 24 81 30 C74 33 65 29 65 29Z" fill="#b5c4a5" opacity="0.65"/>
+        <circle cx="65" cy="4" r="2.5" fill="#b8724e" opacity="0.8"/>
+        <line x1="42" y1="22" x2="28" y2="16" stroke="#6a7c5b" stroke-width="0.9" opacity="0.5"/>
+        <path d="M35 19 C33 14 26 14 25 19 C30 22 35 19 35 19Z" fill="#8fa07a" opacity="0.5"/>
+        <line x1="88" y1="22" x2="102" y2="16" stroke="#6a7c5b" stroke-width="0.9" opacity="0.5"/>
+        <path d="M95 19 C97 14 104 14 105 19 C100 22 95 19 95 19Z" fill="#8fa07a" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="eyebrow">6-Month Probation Review</div>
+    <h1 class="main-title">What your team<br><em>said about you</em></h1>
+    <p class="subtitle">Bronagh Hanratty · Client Services Manager</p>
+    <svg class="wavy-divider" viewBox="0 0 180 12" fill="none">
+      <path d="M0 6 C15 0 30 12 45 6 C60 0 75 12 90 6 C105 0 120 12 135 6 C150 0 165 12 180 6" stroke="#8fa07a" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="tier-top">
+    <div class="section-label">Most consistently mentioned</div>
+    <div class="top-tags">
+      <span class="tag-top">Professional</span>
+      <span class="tag-top">Organised</span>
+      <span class="tag-top">Conscientious</span>
+      <span class="tag-top">Dependable</span>
+      <span class="tag-top">Proactive</span>
+      <span class="tag-top">Builds trust with clients</span>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="tier-mid">
+    <div class="section-label">Strong themes</div>
+    <div class="mid-tags">
+      <span class="tag-mid">Clear communicator</span>
+      <span class="tag-mid">Builds trust</span>
+      <span class="tag-mid">Well prepared</span>
+      <span class="tag-mid">Strong ownership</span>
+      <span class="tag-mid">Keeps timelines moving</span>
+      <span class="tag-mid">Natural with clients</span>
+      <span class="tag-mid">Relationship-builder</span>
+      <span class="tag-mid">Handles clients well</span>
+      <span class="tag-mid">Thoughtful</span>
+      <span class="tag-mid">Calm, polite and approachable</span>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="tier-strengths">
+    <div class="section-label">Standout strengths</div>
+    <div class="strengths-wrap">
+      <div class="strength-item">High standards and attention to detail</div>
+      <div class="strength-item">Clear, professional and trust-building client communication</div>
+      <div class="strength-item">Good ownership of campaigns and follow-through</div>
+      <div class="strength-item">Proactive timeline management</div>
+      <div class="strength-item">Strong presentation in meetings</div>
+      <div class="strength-item">Effective collaboration with Sales</div>
+      <div class="strength-item">Ability to recover or help stabilise delayed campaigns</div>
+      <div class="strength-item">Tactful, approachable manner that makes clients feel heard</div>
+    </div>
+  </div>
+
+  <!-- QUOTES -->
+  <div class="tier-quotes">
+    <div class="section-label">In their own words</div>
+    <div class="quotes-scatter">
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Very conscientious</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Attention to detail is excellent</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Organised and dependable</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Extremely effective</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Takes ownership across the board</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>A very effective collaborator</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Extremely professional</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Excellent presentation skills</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>Quick to respond and resolve issues</p></div>
+      <div class="quote-card"><p class="quote-text"><span class="quote-leaf">✦</span>An absolute pleasure</p></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p class="footer-line">An amazing first six months!</p>
+    <p class="footer-sub">Congratulations on completing your probation period</p>
+  </div>
+
+</div>
+</body>
+</html>
